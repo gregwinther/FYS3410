@@ -234,6 +234,66 @@ The diffraction condition from the previous section is only valid in one directi
 
 \section{Point defects in crystals}
 
+\subsection{Free energy in a crystal}
+
+Vacancies in a crystal lattice can translate into both lower energy and a more preferable system through increased entropy, and higher energy and less preferably system through enthalpy. This result stems from Gibbs free energy
+\begin{equation}
+G = U + pV - TS = H - TS,
+\end{equation}
+where $U$ is internal energy, $p$ is pressure, $V$ is volume, $T$ is temperature, $S$ is entropy and $H$ is enthalpy.
+
+To show that the minimum free energy in a crystal of $N$ sites is reached only when a certain number of vacancies $n$ are available, everything is easier if one  simplifies the expression for entropy
+\begin{equation}
+S = k \ln \left[ \frac{N!}{(N-n)!n!} \right],
+\end{equation}
+where $k$ is Boltzmann's constant.
+
+First, one must assume that $n<<N$ and $N>>1$, then one can simplify by way of Stirling's approximation
+\begin{align*}
+S 	&= k(\ln N!-\ln(N-n)! \ln n!) \\
+	&= k(N \ln N - N - (N - n) \ln (N - n) + (N - n) - n \ln n + n) \\
+	&= k(N \ln N - (N - n) \ln \left[N\left(1 - \frac{n}{N} \right)\right] - n \ln n) \\
+	&= k(N \ln N - (N - n) \left[\ln N + \ln \left(1 - \frac{n}{N} \right)\right] - n \ln n) \\
+\end{align*}
+if $n<< N$ then $\frac{n}{N}$ is very small and $-\frac{n}{N}$ is a good approximation for $\ln\left(1-\frac{n}{N}\right)$. We get
+\begin{align*}
+ &\approx k(N \ln N - (N - n) \left(\ln N -\frac{n}{N}\right) - n \ln n) \\
+ &= k(N \ln N - N\ln N +n \ln N + N\frac{n}{N} - n\frac{n}{N}- n \ln n) \\
+ &= k(n\ln N - n\ln n + n - \frac{n^2}{N}) \\
+ &= kn\left(\ln \frac{N}{n} + 1 - \frac{n}{N} \right),
+\end{align*}
+where both $1$ and $\frac{n}{N}$ are both negligible compared to $\ln(N/n)$. One is left with
+\begin{equation}
+S = kn \ln \frac{N}{n}
+\end{equation}
+In order to find an optimum for Gibbs free energy one takes the derivative with regards to the number of vacancies
+\begin{align*}
+\frac{\partial G}{\partial n} 	&= dH - kT \frac{\partial}{\partial n}\left(n(\ln N - \ln n) \right) \\
+								&= dH - kT \left(\ln \frac{N}{n} -1 \right).
+\end{align*}
+Again one can ignore $1$, because it is minuscule compared to the other parts of the equation. The optimum is found in the usual manner
+\begin{align*}
+0 &= dH - kT \ln\frac{N}{n} \\
+\frac{dH}{kT}  &= \ln\frac{N}{n} \\
+-\frac{dH}{kT} &= \ln\frac{n}{N} \\
+n & = Ne^{-dH/kT}>0.
+\end{align*} 
+Thus one can conclude that that the number of vacancies are greater than zero.
+
+\subsection{Concentration of vacancies}
+The change in enthalpy can be written as a function of internal energy, pressure (stress) and volume
+\begin{equation}
+dH = U + \sigma V.
+\end{equation}
+The concentration of vacancies is
+\begin{equation}
+C_v = \frac{n}{N} = e^{-(U+\sigma V)/kT} = e^{-U/kT}e^{-\sigma V/kT}.
+\end{equation}
+One can see that the concentration of vacancies decreases both in volume, internal energy and stress, but increases in temperature.
+
+\subsection{Activation energy and activation volume}
+Activation energy is the energy required to remove an ion from the crystal. Neighboring atoms tend to move into the new vacancy, which creates a tensile stress field. A diffusion creep refers to the deformation of crystalline solids by the diffusion of vacancies through the crystal lattices. Diffusion creep is a mechanism by which the volume of the crystals can increase. The activation volume is the difference in volume between these two states of the crystal; before and after diffusion of vacancies. 
+
 \vfill
 
 \pagebreak
