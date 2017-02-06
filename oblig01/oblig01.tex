@@ -135,6 +135,109 @@ When one are using Miller indices the planes are often referred to as $($hkl$)$ 
 	\end{tabular}
 \end{table}
 
+\subsection{Reciprocal lattice points}
+
+The $($hkl$)$ planes, specified by Miller indices in table \ref{tab:miller}, can be drawn as points in reciprocal lattice space. Such a space is shown in figure \ref{fig:reciprocal}, where the numbers of the points correspond to the numbers for the planes in table \ref{tab:miller}.
+
+\begin{figure}[ht]
+	\centering
+	\begin{tikzpicture}
+	
+	\coordinate (origin) at (0,0);	
+	
+	% Transform
+	\pgftransformcm{1.5}{-0.2}{0}{1}{\pgfpoint{0cm}{0cm}};
+	
+	% Coordinates	
+	\coordinate (Bone) at (1,0);
+	\coordinate (Btwo) at (0,-1);	
+	
+	% GRID
+	\foreach \x in {-1,...,3}{
+		\foreach \y in {-3,...,1}{
+			\node[draw, circle, inner sep=2pt, fill] at (\x, \y) {};
+		}
+	}
+	
+	% Vectors reciprocal space
+	\draw [ultra thick, -latex, red] (origin)
+		-- (Bone) node [above left] {$b_1$};
+	\draw [ultra thick, -latex, red] (origin)
+		-- (Btwo) node [above left] {$b_2$};
+	\draw (0,-2) node [right] {1};
+	\draw (1,-2) node [right] {2};		
+	\draw (0,-1) node [right] {3};		
+	\draw (2,-1) node [right] {4};		
+	\draw (2,0) node [right] {5};		
+	\draw (1,0) node [right] {6};		
+	
+	\end{tikzpicture}
+	\caption{Reciprocal space with $($hkl$)$ planes from table \ref{tab:miller} marked as points.}
+	\label{fig:reciprocal}	
+\end{figure}
+
+\subsection{X-ray diffraction condition}
+Point $3$ in figure \ref{fig:reciprocal} corresponds to the plane $(010)$. Imagine a vector to this point from origin, $\vb{G}$. For $\vb{G}$ one can check for what vector $\Delta \vb{k} = \vb{G}$ the Laue condition is satisfied and diffraction happens.
+\begin{align*}
+\Delta \vb{k} &= \vb{G} \\
+\vb{k}' - \vb{k} &= \vb{G} \\
+\vb{G} + \vb{k} &= \vb{k}' \\
+\end{align*}
+For elastic scattering, $\vb{k}'^2 = \vb{k}^2$, which gives
+\begin{align*}
+(\vb{G} + \vb{k})^2 &= \vb{k}^2 \\
+\vb{G}^2 + 2\vb{k} \cdot \vb{G} + \vb{k}^2 &= \vb{k}^2  \\
+2\vb{k} \cdot \vb{G} &= \vb{G}^2 \\
+\vb{k_G} = \frac{\vb{k}\cdot\vb{G}}{\norm{\vb{G}}} &= \frac{1}{2} \norm{\vb{G}}.
+\end{align*}
+This means that there will be no diffraction if $k_G < \frac{1}{2} \norm{\vb{G}}$.
+
+\subsection{Brillouin zones}
+The diffraction condition from the previous section is only valid in one direction. In another direction the vector will have the same projection with the same criteria. By introducing the vector $\vb{G}_{(hkl)}$ corresponding to each point in reciprocal space one can determine a zone where the vector has a projection $k_{\vb{G}_{(hkl)}} < \frac{1}{2}\norm{\vb{G}_{(hkl)}}$ for all $\vb{G}_{(hkl)}$.
+
+\begin{figure}[ht]
+	\centering
+	\begin{tikzpicture}
+	
+	\coordinate (origin) at (0,0);	
+	
+	% Transform
+	\pgftransformcm{1.5}{-0.2}{0}{1}{\pgfpoint{0cm}{0cm}};
+	
+	% Coordinates	
+	\coordinate (Bone) at (1,0);
+	\coordinate (Btwo) at (0,-1);	
+	
+	% Zones
+	\draw[fill=yellow]	(1,-1) -- (1,1) -- (-1,1) -- (-1,-1) --cycle;
+	\draw[fill=blue]	(1,0) -- (0,1) -- (-1,0) -- (0,-1) --cycle;
+	\draw[fill=red]		(0.5,-0.5) -- (0.5,0.5) -- (-0.5,0.5) -- (-0.5,-0.5) --cycle;
+	
+	% GRID
+	\foreach \x in {-2,...,2}{
+		\foreach \y in {-2,...,2}{
+			\node[draw, circle, inner sep=2pt, fill] at (\x, \y) {};
+		}
+	}
+	
+	% Vectors reciprocal space
+	\draw [ultra thick, -latex] (origin)
+		-- (Bone) node [right] {$b_1$};
+	\draw [ultra thick, -latex] (origin)
+		-- (Btwo) node [below] {$b_2$};
+		
+	
+	\end{tikzpicture}
+	\caption{Brillouin zones in reciprocal space. Red, blue and yellow are the first second and third Brillouin zone respectively.}
+	\label{fig:brillouin}	
+\end{figure}
+
+\section{Point defects in crystals}
+
+\vfill
+
+\pagebreak
+
 \begin{appendices}
 
 \section{Script for Madelung's constant}
