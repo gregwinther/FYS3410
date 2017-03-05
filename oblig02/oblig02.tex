@@ -3,6 +3,7 @@
 \usepackage{amsmath}
 \usepackage{physics}
 \usepackage{graphicx}
+\usepackage{verbatim}
 
 \renewcommand{\thesubsection}{\thesection.\alph{subsection}}
 
@@ -15,6 +16,8 @@
 \begin{document}
 
 \maketitle
+
+\begin{comment}
 
 \section{Vibrations of a One-Dimensional Monatomic Chain}
 This is a study of the vibrations in an infinite one-dimensional crystal with just one atom in  the basis. 
@@ -81,5 +84,94 @@ Limiting the viewpoint again to the  first Brillouin zone ($k\pm+pi/a$) gives a 
 \begin{equation}
 \delta_n = Ae^{i\omega t - ikna}
 \end{equation}
+
+\end{comment}
+
+\setcounter{section}{1}
+\section{Density of States (DOS) for Phonons}
+The phonon density of states in a one-dimensional array of $N$ atoms is derived in the following.
+
+\subsection{DOS as a function of wave-vector}
+One can view the one-dimensional array of atoms as a ring where the first and the last atom is connected to each other. Such a boundary condition is known as a Born-von Karman boundary contition. This boundary implies that atom number $n$ is the same atom as atom number $n+N$.
+The displacement of this atom is
+\begin{equation*}
+\delta x_n = \delta x_{n+N}.
+\end{equation*}
+Applying Bloch's theorem\footnote{$\psi(\vb{r}+\vb{R})=e^{i\vb{k}\cdot\vb{R}}\psi(\vb{r})$}
+to this relation gives
+\begin{equation*}
+\delta x_1 e^{ikan} = \delta x_1 e^{ika(n+N)},
+\end{equation*}
+where $k$ is the wave-vector and $a$ is the lattice parameter. To satisfy this condition we must have
+\begin{equation*}
+1 = e^{ikaN} = \cos(kaN) + i\sin(kaN),
+\end{equation*}
+which only is satisfied if
+\begin{equation*}
+2\pi\nu = kaN, \quad \nu=1,2,\dots,N
+\end{equation*}
+which gives
+\begin{equation*}
+k = \frac{2\pi}{Na}\nu.
+\end{equation*}
+The separation between allowed solution ($k$-values) is therefore
+\begin{equation}
+\Delta k = \frac{2\pi}{Na}.
+\end{equation}
+Thus, in one dimension the density of states is
+\begin{equation}
+D(k) = \frac{1}{\Delta k} = \frac{Na}{2\pi} = \frac{L}{2\pi}.
+\end{equation}
+One can easily see that the density of states (DOS) is independent of $k$, so the density of modes in $k$-space is uniformly distributed.
+
+\subsection{DOS as a function of angular frequency}
+A one-dimensional lattice with one atom in the basis can be modelled as a harmonic chain, where one imagines a spring connecting all the atoms. The dipsersion relation then becomes
+\begin{equation}
+\label{eq:disprel}
+\omega = \omega_0\sin{\frac{ka}{2}}, \quad \omega_0 = 2\sqrt{\frac{g}{m}}
+\end{equation}
+where $\omega$ is the angular frequency, $g$ is the spring constant and $m$ is the mass of each atom.
+
+One can change between one density of states to the other by way of the following formula
+\begin{equation}
+D(\omega)d\omega = D(k)dk = \frac{Na}{2\pi}dk.
+\end{equation}
+which can be rewritten to include the group velocity
+\begin{equation}
+\label{eq:insertgrouphere}
+D(\omega)d\omega = \frac{Na}{2\pi}\frac{dk}{d\omega}d\omega = \frac{Na}{2\pi}\frac{d\omega}{v_g}.
+\end{equation}
+The group velocity is
+\begin{equation}
+\label{eq:groupvel2}
+v_g = \frac{dw}{dk} = \omega_0\frac{a}{2} \cos{\frac{ka}{2}}.
+\end{equation}
+This equation is to be inserted in equation \ref{eq:insertgrouphere}, but first we also need a function of $\omega$ instead of $k$ which is found by inverting equation \ref{eq:disprel}
+\begin{align*}
+\omega &= \omega_0\sin{\frac{ka}{2}} \\
+\frac{\omega}{\omega_0} &= \sin{\frac{ka}{2}} \\
+\frac{ka}{2} &= \arcsin{\frac{\omega}{\omega_0}} \\
+k &= \frac{2}{a}\arcsin{\frac{\omega}{\omega_0}}.
+\end{align*}
+This can now be inserted into the group velocity
+\begin{align*}
+v_g &= \omega_0\frac{a}{2}\cos\left(\frac{a}{2}\frac{2}{a}\arcsin\frac{\omega}{\omega_0} \right) \\
+	&= \omega_0\frac{a}{2}\sqrt{1-\left(\frac{\omega}{\omega_0}\right)^2}.
+\end{align*}
+inserting this expression into \ref{eq:insertgrouphere} yields
+\begin{equation}
+D(\omega) = \frac{N}{\pi\omega_0}\frac{1}{\sqrt{1-\left(\frac{\omega}{\omega_0}\right)^2}}
+\end{equation}
+which is the density of states as a function of angular frequency.
+
+\subsection{Comparison of DOS measures}
+\begin{figure}
+\centering
+	\includegraphics[width = 0.9\textwidth]{DOS.png}
+	\caption{Comparison of density of states. $D(k)$ on the left axis and $D(\omega)$ on the right.}
+	\label{fig:DOS}
+\end{figure}
+
+A comparison of the two DOS measures that has been derived is shown in figure \ref{fig:DOS}. The first $y$-axis is used for $D(k)$, and the second for $D(\omega)$. Because the density of states for $k$, $D(\omega)$ is constant for all $k$, this is much easier to deal with than the ever changing $D(\omega)$. The much more stable density of states i $k$-space is reason enough to use $D(\omega)$, but this one also has a closer connection with reciprocal space and diffraction patterns.
 
 \end{document}
