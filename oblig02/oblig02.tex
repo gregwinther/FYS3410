@@ -167,14 +167,14 @@ which is the density of states as a function of angular frequency.
 \subsection{Comparison of DOS measures}
 \begin{figure}
 \centering
-	\includegraphics[width = 0.9\textwidth]{DOS.png}
+	\includegraphics[width = 0.8\textwidth]{DOS.png}
 	\caption{Comparison of density of states. $D(k)$ on the left axis and $D(\omega)$ on the right.}
 	\label{fig:DOS}
 \end{figure}
 
 A comparison of the two DOS measures that has been derived is shown in figure \ref{fig:DOS}. The first $y$-axis is used for $D(k)$, and the second for $D(\omega)$. Because the density of states for $k$, $D(\omega)$ is constant for all $k$, this is much easier to deal with than the ever changing $D(\omega)$. The much more stable density of states i $k$-space is reason enough to use $D(\omega)$, but this one also has a closer connection with reciprocal space and diffraction patterns.
 
-\section{Different Models for Temperatur-Heat Capacity Dependence}
+\section{Different Models for Temperature-Heat Capacity Dependence}
 In the outline of the following models I will be very brief, and not fully derive the models, but rather give a more qualitative description.
 
 \subsection{Dulong-Petit}
@@ -251,5 +251,89 @@ Because the oscillations of the Debye models give slightly different results tha
 
 \setcounter{section}{5}
 \section{Thermal Conductivity}
+The thermal conductivity coefficient $\kappa$ is given by $\kappa = \frac{1}{3}C_v\Lambda$, where $C_v$ is the heat capacity and $\Lambda$ is the phonon free path. From the previous section we have seen that $C_v \propto T^3$ for low temperatures and for very high temperatures that $C_v = 3k_B T$. The mean free path $\Lambda$ is constrained by the number of occupied states and will as a consequence move towards infinity when the temperature and thus the number of occupied states moves towards zero. However, $\Lambda$ is also constrained by the size of the crystal, so that $\Lambda_{T\to 0} = L$ for a one-dimensional crystal. At high temperatures, many states will be occupied and $\Lambda$ will approach zero with a slope of $L \propto T^{-1}$. This reasoning is summarised in table \ref{tab:kappa1}, with a corresponding expression for $\kappa$.
 
+\begin{table}[h]
+\centering
+	\caption{Deriving an expression for thermal conductivity $\kappa$}
+	\begin{tabular}{c|ccc} 
+			  & $C_v$ 		& $\Lambda$ 	 	& $\kappa$ \\ \hline \hline
+	$T_{low}$ & $\propto T^3$ & $\to L$		 	& $\propto T^3$ \\ 
+	$T_{high}$& $3k_B$		& $\propto T^{-1}$	& $\propto T^{-1}$ \\ \hline \hline
+	\end{tabular}
+	\label{tab:kappa1}
+\end{table} 
+
+Regrettably, there is a problem with the $T^{-1}$ estimation of $\kappa$ in the high temperature limit, as experimental data shows that the heat conductivity drops much faster. It is found that lower energy phonons don't participate in energy transfer through the crystal, only phonons with energy $E_{1/2} = (1/2)\hbar\omega_d$ or higher.The Debye temperature is $T_{Debye} = \hbar\omega_d/k_B$ so this can be rewritten as $E_{1/2} = k_B T_{Debye}/2$. From this comes a new mean free path
+\begin{equation*}
+\Lambda \propto e^{T_{Debye}/2T},
+\end{equation*}
+and a new approximation for the heat conductivity at high temperatures, given in table \ref{tab:kappa2}.
+
+\begin{table}[h]
+\centering
+	\caption{How umklapp effects $\kappa$}
+	\begin{tabular}{c|ccc} 
+			  & $C_v$ 		& $\Lambda$ 	 	& $\kappa$ \\ \hline \hline
+	$T_{low}$ & $\propto T^3$ & $\to L$		 	& $\propto T^3$ \\ 
+	$T_{high}$& $3k_B$		& $\propto e^{T_{Debye}/2T}$	& $\propto e^{T_{Debye}/2T}$ \\ \hline \hline
+	\end{tabular}
+	\label{tab:kappa2}
+\end{table} 
+
+What happens is that two phonons collide to give a net phonon with an opposite momentum! This causes resistance to heat flow. The effect is illustrated in figure \ref{fig:umklapp} and is called ``the umklapp effect''. Umklappi is a german word that loosely translates to ``flip over''. Under these circumstances it is the wavevector that flips over.
+
+\begin{figure}[h]
+\centering
+	\includegraphics[width= 0.7\textwidth]{umklapp.png}
+	\caption{How the umklapp effect causes high and sudden resistance to heat flow}
+	\label{fig:umklapp}
+\end{figure}
+
+\section{Derivation of Heat Capacity in the Debye Model}
+As stated prior, equation \ref{eq:debyestart} can be approximated by an integral
+\begin{equation}
+\ev{E} = 3\frac{L^3}{(2\pi)^3}\int d\vb{k}\hbar\omega(\vb{k}) \left(n_B(\beta\hbar\omega(\vb{k})+\frac{1}{2} \right).
+\end{equation}
+Each excitation mode is a boson of frequency $\omega(\vb{k})$ and is occupied on average $n_B(\beta\hbar\omega(\vb{k})$ times. By spherical symmetry, one may convert the three-dimensional integral to a one-dimensional integral
+\begin{equation*}
+\int d\vb{k} \to 4\pi\int^\infty_0 k^2dk,
+\end{equation*}
+as $\pi k^2$ is the surface of a sphere with radius $k$. Using $k=\omega/v$ we get
+\begin{equation}
+\ev{E} = 3\frac{4\pi L^2}{(2\pi)^3}\int_0^\infty \omega^2d\omega (1/v^3)(\hbar\omega)\left( n_B(\beta\hbar\omega) + \frac{1}{2}\right).
+\end{equation}
+It is convenient to replace $nL^3=N$, where $n$ is the density of atoms. We then obtain
+\begin{equation}
+\label{eq:debye3}
+\ev{E}= \int_0^\infty d\omega D(\omega)(\hbar\omega)\left(n_B(\beta\hbar\omega + \frac{1}{2} \right),
+\end{equation}
+where the \emph{density of states} is given by
+\begin{equation}
+D(\omega) 	= L^3\left[\frac{12\pi\omega^2}{(2\pi)^3v^3} \right] 
+			= N\left[\frac{12\pi\omega^2}{(2\pi)^3nv^3} \right] = N\frac{9\omega^2}{\omega_d^3},
+\end{equation}
+the Debye frequency is $\omega_d = 6\pi^2nv^3$. 
+
+The only place $T$ is contained is in $\beta$, and since we are concerned with $C = \partial\ev{E}/\partial T$ we can ignore the second term in the parenthesis in equation \ref{eq:debye3}. This yields\footnote{Bearing in mind that $n_B(x)=\frac{1}{e^x-1}$.}
+\begin{equation}
+\ev{E} = \frac{9N\hbar}{\omega_d^3}\int_0^\infty d\omega \frac{\omega^3}{e^{\beta\hbar\omega}-1}.
+\end{equation}
+Substituting $x = \beta\hbar\omega$ this becomes
+\begin{equation}
+\ev{E} = \frac{9N\hbar}{\omega_d^3}\int_0^\infty dx \frac{x^3}{e^x-1},
+\end{equation}
+where the integral simply equals $\pi^4/15$. Thus,
+\begin{equation}
+\ev{E} = 9N\frac{(k_BT)^4}{(\hbar\omega_d)^3}\frac{\pi^4}{15}.
+\end{equation}
+
+We are finally ready for the final step
+\begin{equation}
+C_v = \frac{\partial \ev{E}}{\partial T} = Nk_B \frac{(k_BT)^3}{(\hbar\omega_d)^3}\frac{12\pi^4}{5} \propto T^3.
+\end{equation}
+Following the same kind of procedure similar results can be obtained for lesser dimensions. For one dimension $C_v \propto T$ and for two dimensions $C_v \propto T^2$.
+
+\subsection*{Nanowires}
+A nanowire is a one-dimensional array of atoms. Such a structure is most likely only possible in theory, as the thinnest threads made are a few nanometres thick. According to the reasoning above, such a structure should have heat capacity $C_v \propto T$. The mean free path of phonons travelling along a nanowire would be at most the length of the wire $L$. This means that the heat conductivity of the nanowire is linearly dependent on temperature ($\kappa \propto T$), which is probably the lowest heat conductance possible. 
 \end{document}
