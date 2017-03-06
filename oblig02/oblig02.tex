@@ -174,4 +174,34 @@ which is the density of states as a function of angular frequency.
 
 A comparison of the two DOS measures that has been derived is shown in figure \ref{fig:DOS}. The first $y$-axis is used for $D(k)$, and the second for $D(\omega)$. Because the density of states for $k$, $D(\omega)$ is constant for all $k$, this is much easier to deal with than the ever changing $D(\omega)$. The much more stable density of states i $k$-space is reason enough to use $D(\omega)$, but this one also has a closer connection with reciprocal space and diffraction patterns.
 
+\section{Different Models for Temperatur-Heat Capacity Dependence}
+
+\subsection{Dulong-Petit}
+The Dulong-Petit law is a thermodynamic rule proposed in 1819 by French physicists Pierre Louis Dulong and Alexis Thérèse Petit. They assume that every mode oscillates according to a classical harmonic oscillator, with continuous energy. In such a classical treatment, the thermal energy density is
+\begin{equation}
+u = \frac{1}{V}\frac{\int dV e^{-\beta H}H}{\int dV e^{-\beta H}} = -\frac{1}{V}\frac{\partial}{\partial \beta}\ln \int dV e^{-\beta H}
+\end{equation}
+where $\beta = 1/k_BT$ and $H$ is the enthalpy. By making a change of variables, one finds that the integral equates to\footnote{I will not make the full calculation here, but rather stick to a brief description.}
+\begin{equation}
+u = u_{eq} + 3nk_BT,
+\end{equation}
+which yields the heat capacity
+\begin{equation}
+C_v = \frac{\partial u}{\partial T} = 3nk.
+\end{equation}
+The heat capacity is a straight line, and measured heat capacities come quite close to the Dulong and Petit value. However, when temperature drops, the heat capacity falls well below the Dulong and Petit value. Moreover, when the temperature gets large, it seems fairly clear that the curve never quite reaches the precise value, as can be seen in figure 		\ref{fig:dulongpetit}. In conclusion, the law of Dulong and Petit is a reasonable approximating for higher temperatures.
+
+\begin{figure}
+\centering
+	\includegraphics[width = 0.7\textwidth]{dulong_petit.jpg}
+	\caption{Measured heat capacities for lead, copper, aluminimum and carbon. The horizontal line is the classical Dulong and Petit value.}
+	\label{fig:dulongpetit}
+\end{figure}
+
+\subsection{Einstein}
+
+
+
+\subsection{Debye}
+
 \end{document}
