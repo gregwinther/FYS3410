@@ -7,8 +7,8 @@
 % Letters instead of numbers for subsections
 \renewcommand\thesubsection{\Alph{subsection}}
 
-\title[Problem Set 3]{Problem Set 3 \\
-		\hrulefill \small{ FYS3410: Solid State Physics } \hrulefill}
+\title[Problem Set 3]{Electrons \\
+		\hrulefill \small{ FYS3410: Problem Set 3 } \hrulefill}
 
 \author{Candidate 33}
 
@@ -27,11 +27,107 @@ The Drude theory makes three assumptions
 \item Once a scattering event occurs, we assume the electron returns to momentum $\vb{p} = 0$.
 \item In between scattering events, the electrons, which are charge $-e$ particles, respond to the externally applied electric field $\vb{E}$ and magnetic field $\vb{B}$.
 \end{enumerate}
- 
 
+The failures of the Drude theory:
+\begin{itemize}
+\item The Hall coefficient frequently is measured to have the wrong sign, indicating a charge carrier with charge opposite to that of the electron.
+\item There is no $\frac{3}{2}k_B$ heat capacity per particle measured for electrons in metals. This then makes the Peltier and Seebeck coefficients come out wrong by a factor of $100$.
+\end{itemize}
 
 \subsection{Prediction of Wiedemann-Franz}
-The most impressive success of the Drude model at the time it was proposed was its explanation of the empirical law of Wiedemann and Franz. In a free electron gas model (Drude), the electrons would have kinetic energy equal to the thermal energy
+The most impressive success of the Drude model at the time it was proposed was its explanation of the empirical law of Wiedemann and Franz. 
 
+Firstly, the Lorentz force on an electron is given by
+\begin{equation}
+\label{eq:lorentz}
+\vb{F} = -e(\vb{E} + \vb{v} \times \vb{B})
+\end{equation}
+Now, consider an electron with momentum $\vb{p}$ at a time $t$. What will the momentum of the electron be at a time $t + dt$? There is a probability $dt/\tau$ that it will scatter to momentum zero. If it does not scatter, it will accelereated as dictated by newtons second law of motion\footnote{$\vb{F} = \frac{d\vb{p}}{dt}$} at probability $1 - dt/\tau$. The expected value of the momentum becomes 
+\begin{equation}
+\ev{\vb{p}(t + dt)} = \left( 1- \frac{dt}{\tau} \right) (\vb{p}(t) + \vb{F}dt) + \vb{0}\frac{dt}{\tau}.
+\end{equation}
+This can be rearranged if one keeps the terms in linear order of $dt$
+\begin{equation}
+\frac{d \ev{\vb{p}}}{dt} = \vb{F} - \frac{\ev{\vb{p}}}{t},
+\end{equation}
+where $\vb{F}$ is the Lorentz force from equation \ref{eq:lorentz}, of course. Assuming that the electric field is non-zero, the magnetic field is zero, and writing $\ev{\vb{p}}$ as $\vb{p}$ we get
+\begin{equation}
+\frac{d\vb{p}}{t} = -e\vb{E} -\frac{\vb{p}}{\tau}.
+\end{equation}
+In a steady state $d\vb{p}/dt= 0$ which gives
+\begin{equation}
+m\vb{v} = \vb{p} = -e\tau \vb{E} \quad \rightarrow \quad \vb{v} = -\frac{e\vb{E}\tau}{m},
+\end{equation}
+where $m$ is the mass of the electron and $\vb{v}$ is its velocity.
+
+If there is a density of $n$ of electrons in the metal each with charge $-e$, and they ar all moving at velocity $\vb{v}$, the the electrical current is given by
+\begin{equation}
+\vb{j} = -en\vb{v} = \frac{e^2\tau n}{m}\vb{E}.
+\end{equation}
+The electrical conductivity of the metal, defined via $\vb{j} = \sigma\vb{E}$, is given by
+\begin{equation}
+\label{eq:electricalconductivity}
+\sigma = \frac{e^2\tau n}{m}.
+\end{equation}
+
+From the kinetic theory of gas we have that the thermal conductivity is
+\begin{equation}
+\label{eq:kinteticthermal}
+\kappa = \frac{1}{3} n C_v \ev{v} \lambda,
+\end{equation}
+where $\ev{v}$ is the average thermal velocity and  $\lambda = \ev{v} \tau$ is the scattering length. For a monatomic gas the heat capacity per particle is
+\begin{equation}
+\label{eq:monoheatcap}
+C_v = \frac{3}{2}k_B, 
+\end{equation}
+and 
+\begin{equation}
+\label{eq:monoavgvel}
+\ev{v} = \sqrt{\frac{8k_BT}{\pi m}}.
+\end{equation}
+Inserting \ref{eq:monoheatcap} and \ref{eq:monoavgvel} into equation \ref{eq:kinteticthermal} yields
+\begin{equation}
+\kappa = \frac{4}{\pi} \frac{n\tau k_B^2T}{m}.
+\end{equation}
+While this quantity has the unknown parameter $\tau$ in it, equation \ref{eq:electricalconductivity} contains the same quantity. Thus, we may look at the ratio of thermal conductivity to electrical conductivity,
+known as the Lorenz number
+\begin{equation}
+L = \frac{\kappa}{T\sigma} = \frac{4}{\pi}\left(\frac{k_B}{e} \right)^2.
+\end{equation}
+A slightly different prediction is obtained by realising that $\ev{v}^2$ was used in this calculation, whereas one can use $\ev{v^2}$ instead\footnote{From kinetic theory: $C_v T = \frac{1}{2}m\ev{v^2}$}. This gives
+\begin{equation}
+\label{eq:durderesult2}
+L = \frac{\kappa}{T\sigma} = \frac{3}{2} \left(\frac{k_B}{e} \right)^2.
+\end{equation}
+
+This result was seen as a big success for the Drude model, because it was known for a long time that almost all metals have roughly the same value for this ratio. This fact is called the Wiedemann-Franz law.
+
+\subsection{Free electron Fermi gas}
+For a free electron Fermi gas, the heat capacity is given as
+\begin{equation}
+C_{\text{el}} = \frac{\pi^2}{2} \frac{N k_BT}{T_F}
+\end{equation}
+and the Fermi velocity is given as
+\begin{equation}
+v_f = \frac{\hbar k_F}{m},
+\end{equation}
+where $k_F$ is the Fermi wavevector. This gives a new expression for the heat conductivity
+\begin{equation}
+\kappa = \frac{\pi^2}{6}\frac{Nnk_BT\hbar^2k_F^2\tau}{T_F m^2},
+\end{equation}
+while the electrical conductivity ($\sigma$) is the same and given by equation \ref{eq:electricalconductivity}. The Lorenz factor becomes
+\begin{equation}
+\label{eq:FEFGlorenz1}
+L = \frac{\kappa}{T	\sigma} = \frac{\pi^2}{6}\frac{Nk_Bk_F^2\hbar^2}{e^2T_F m},
+\end{equation}
+which is somewhat of a mess, but replacing the Fermi temperature with
+\begin{equation*}
+T_F = \frac{E_F}{k_B} = \frac{N\hbar^2k_F^2}{2mk_B}
+\end{equation*}
+turns the expression in \ref{eq:FEFGlorenz1} into
+\begin{equation}
+L = \frac{\kappa}{T\sigma} = \frac{\pi^2}{3}\frac{k_B^2}{e^2}.
+\end{equation}
+This is somewhat similar to what I obtained in equation \ref{eq:durderesult2}.
 
 \end{document}
