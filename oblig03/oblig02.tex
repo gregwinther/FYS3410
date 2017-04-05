@@ -130,4 +130,47 @@ L = \frac{\kappa}{T\sigma} = \frac{\pi^2}{3}\frac{k_B^2}{e^2}.
 \end{equation}
 This is somewhat similar to what I obtained in equation \ref{eq:durderesult2}.
 
+\section{Density of States in Free Electron Fermi Gas}
+By introducing Born-Von Karman boundary conditions, one can derive the density of states for a free electron Ferim gas (FEFG) in a three-dimensional sample. Born-von karman means that the wave function is periodic. Here is how such a condition would look like in one dimension:
+\begin{equation}
+\psi_x(x + L) = \psi_x(x),
+\end{equation}
+where $L$ is the length (size in one dimension) of the sample. A plane wave solution in three dimensions will satisfy such a periodicity requirement:
+\begin{equation}
+\psi(\vb{r}) = A\cos(k\vb{r}) + iB\sin(k\vb{r}) \propto e^{ikx}
+\end{equation}
+where the wavevector is quantised in all dimensional directions such that
+\begin{equation*}
+k_x = \frac{2\pi}{L}n_x, \text{ for } n_x = 1, 2, 3, \dots
+\end{equation*}
+By choosing a Hamiltonian without potential, since the electrons are free, the Schrödinger equation gives
+\begin{align*}
+\hat{H}\psi(\vb{r}) &= E\psi(\vb{r}) \\
+-\frac{\hbar^2\nabla}{2m_e}\psi(\vb{r}) &= E\psi(\vb{r}) \\
+\rightarrow E &= \frac{\hbar^2 \vb{k}^2}{2m_e}.
+\end{align*}
+
+In the ground state of a system of $N$ free electrons, the occupied orbitals may be represented as points inside a sphere in $\vb{k}$ space. The energy on the surface on the sphere is the Fermi energy; the wavevectors at the Fermi surface have a magnitude $k_F$ such that
+\begin{equation}
+\epsilon_F = \frac{\hbar^2}{2m}k_F^2.
+\end{equation}
+There will be to electrons per $k$-states because of spin, such that $\text{DOS} = 2\frac{1}{(2\pi/L)^3} = 2\left(\frac{L}{2\pi} \right)^3 = \frac{V}{4\pi^3}$. $k_F$  forms a sphere in $k$-space with volume $V_F = \frac{4\pi}{3}k_F^3$, which contains $N = V_F \times \text{DOS} = \frac{k_F^2}{3}\frac{V}{\pi^2}$ occupied states. Rewriting this gives
+\begin{align}
+k_F = &\left(\frac{3\pi^2N}{V} \right)^{\frac{1}{3}} \\
+\epsilon_F =\frac{\hbar^2}{2m_e} &\left(\frac{3\pi^2N}{V} \right)^{\frac{2}{3}}.
+\end{align}
+Moreover, the Fermi velocity is found by way of $\epsilon_F = \frac{1}{2}mv_F^2$
+\begin{equation}
+v_F = \sqrt{\frac{2\epsilon_F}{m}} = \frac{\hbar}{m_e}\left(\frac{3\pi^2 N}{V} \right)^{\frac{1}{3}} = \frac{\hbar k_F}{m_e}.
+\end{equation}
+Lastly, the Fermi temperature can be found with the relation $k_BT_F = \epsilon_F$
+\begin{equation}
+T_F = \frac{\hbar^2}{2m_ek_B}\left(\frac{3\pi^2 N}{V} \right)^{\frac{2}{3}}
+\end{equation}
+
+EXPLAIN THE TREND!
+
+\section{Free Electron Fermi Gas II}
+
+
 \end{document}
