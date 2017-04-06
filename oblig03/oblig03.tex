@@ -217,4 +217,49 @@ E(n_x, n_y, n_z) = \frac{\hbar^2}{2m}k_x^2 + \frac{\hbar}{2m}\left(\frac{2\pi}{K
 \end{equation}
 which can be simplified further by concatenating the quantum number in $y$- and $z$-directions, such that $n = n_x + n_y$. In this case, the energy will be the same, independently of $n_y$ and $n_z$, assuming that $n^2 = n_y^2 + n_z^2$ holds. The degeneration will be decided by the number of distributions possible for a particular value of $n^2$. For instance $n^2 = 20$ has degeneracy $2$ because the equation $20 = n_x^2 + n_y^2$ has solutions $(n_x, n_y) = (2, 4)$ and $(n_x, n_y) = (4, 2)$.
 
+\section{The Konig-Penney Model}
+\begin{figure}
+\centering
+	\includegraphics[width=0.7\textwidth]{deltapotential.png}
+	\caption{System with potential $V(x) = V_0\delta$, where $\delta$ is $1$ if $x=na$ and $0$ everywhere else.}
+	\label{fig:deltapotential}	
+\end{figure}
+
+Figure \ref{fig:deltapotential} illustrates a periodic potential of a one-dimensional lattice. The potential has value $V_0$ at atomic sites and is $0$ elsewhere. The wave function in this system would be
+\begin{equation}
+\psi_{\alpha}(x) = Ae^{ikx} + Be^{-ikx}, \quad k = \sqrt{\frac{2mE}{\hbar^2}}.
+\end{equation}
+The Bloch theorem states that a general wave function can be expressed as
+\begin{equation}
+\psi(x) = u(x)e^{iKx}
+\end{equation}
+where $K$ is a wave vector independent of $k$. Bloch's theorem implies that $\psi(0) = u(0)$ and that $\psi(a) = u(a)e^{iKa}$. Moreover, because $u(a+x) = u(x)$, the ratio
+\begin{equation*}
+\frac{\psi(a)}{\psi(0)} = \frac{u(a)e^{iKa}}{u(0)} = e^{iKa},
+\end{equation*}
+gives the relation $\psi(a) = \psi(0)e^{iKa}$, which one may alternatively write as
+\begin{align*}
+\psi_{\beta}(x) &= \psi_{\alpha}(x-a)e^{iKa}, \\
+\psi_{\beta}(x) &= \left[Ae^{ik(x-a)} + Be^{-ik(x-a)} \right]e^{iKa}.
+\end{align*}
+Since the general wave function $\psi(x)$ must be be continuous then $\psi_{\alpha}(a) = \psi_{\beta}(a)$, which gives
+\begin{align*}
+\psi_{\alpha}(a) &= \psi_{\beta}(a) \\
+Ae^{ika} + Be^{-ika} &= [A + B]e^{iKa} \\
+Ae^{ika} + Be^{-ika} &= Ae^{iKa} + Be^{iKa} \\
+\end{align*}
+\begin{equation}
+A \left[e^{iKa} - e^{ika} \right] = B \left[e^{-ika} - e^{iKa} \right].
+\end{equation}
+Another requirement on the wave function $\psi(x)$ is that its derivative must also be continuous. From the time independent Schrödinger equation (TISE)
+\begin{align*}
+E\psi(x) &= -\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}\psi(x) + V(x) \psi(x) \\
+\rightarrow \frac{\partial^2}{\partial x^2} \psi(x) &= \frac{2m}{\hbar^2}[V(x) - E]\psi(x).
+\end{align*}
+The first derivative can now be found by way of integration
+\begin{equation}
+\int_{a-\Delta X}^{a+\Delta x}
+\end{equation}
+
+
 \end{document}
