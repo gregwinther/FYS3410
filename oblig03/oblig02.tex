@@ -3,6 +3,7 @@
 \usepackage{amsmath}
 \usepackage[utf8]{inputenc}
 \usepackage{physics}
+\usepackage{graphicx}
 
 % Letters instead of numbers for subsections
 \renewcommand\thesubsection{\Alph{subsection}}
@@ -172,5 +173,48 @@ EXPLAIN THE TREND!
 
 \section{Free Electron Fermi Gas II}
 
+\section{Free Electron Fermi Gas in Lower Dimensions}
+
+\subsection{DOS Independent of Energy in Two Dimensions}
+It can be showed that the density of states (DOS) is independent of energy in two dimensions.
+\begin{align*}
+\text{DOS}_{2D}(k) dk = 2\left(\frac{1}{2} \right)^2\frac{2\pi k}{\frac{\pi}{L_x}\frac{\pi}{L_y}}\frac{1}{V} dk &= \frac{\pi k}{\frac{\pi^2L_xL_yL_z}{L_xL_y}}=\frac{k}{L_z\pi} dk \\
+\text{DOS}_{2D}(E) dE &= \text{DOS}_{2D}(k) dk \\
+\text{DOS}_{2D}(E) &= \frac{\text{DOS}_{2D}(k)}{\frac{dE}{dk}} \\
+				&= \frac{k}{L_z\pi}\frac{2m}{\hbar^2}\frac{1}{2k} \\
+				&= \frac{m}{\hbar^2L_z\pi}
+\end{align*}
+
+\subsection{DOS Proportional to Inverse Square Root of Energy in One Dimension}
+It can be showed that the density of states (DOS) is proportional to $E^{-\frac{1}{2}}$ in one dimension.
+\begin{align*}
+\text{DOS}_{1D}(k)dk &= 2\frac{1}{2}\frac{1}{\frac{\pi}{L_x}}\frac{1}{V}dk = \frac{1}{\pi}\frac{1}{L_yL_z}dk \\
+\text{DOS}_{1D}(E) &= \frac{\text{DOS}_{1D}(k)}{\frac{dE}{dk}} \\
+ &=  \frac{1}{\pi}\frac{1}{L_yL_z}\frac{2m}{\hbar^2}\frac{1}{2k} \\
+ &= \frac{m}{\hbar^2\pi}\frac{1}{L_yL_z}\frac{1}{k} \\ 
+\rightarrow k &= \left(\frac{2m}{\hbar^2}\right)^{\frac{1}{2}} E^{\frac{1}{2}} \\
+\text{DOS}_{1D}(E) &= \left(\frac{m}{E} \right)^{\frac{1}{2}} \frac{1}{2\pi\hbar L_y L_z}
+\end{align*}
+
+\subsection{DOS Trends for Quantum Wells and Wires}
+In quantum wells, the function DOS($E$) has a stair step graph. The wavevector $k = \abs{\vb{k}}$ will lie in a plane with $z$-component equal to $k_{z,1}$ until $(k_x^2+k_y^2)$ is large enough for $k_z$ to be excited. Then the wavevector $k$ is long enough for $k_z$ to be excited from $n_z=1$ to $n_z=2$, for instance. This implies that for energy eigenvalue $E < \frac{\hbar^2}{2m}(k_x^2 + k_y^2 + k_{z,1}^2)$, DOS$_{2D}(E) =0$, and will be increased discretely for higher values of energy $E$.
+
+In one dimension, the wavevector $k$ will only have one degree of freedom. It can only move in one direction, for instance the $x$-direction. The wavevector will increase in magnitude in the $x$-direction until $(k_x^2+k_{y,1}^2+k_{z,1}^2)$ is large enough to excite $k_y$ or $k_z$. At this point DOS$_{1D}(E)$ will jolt upwards and then decrease with $E^{-1/2}$ until again $k_y$ or $k_z$ can be excited.
+
+Figure \ref{fig:dimensionalDOS} provides a good illustration of how the density of states depends on energy, for different dimensionality.
+
+\begin{figure}
+\centering
+	\includegraphics[width=0.7\textwidth]{DOS.png}
+	\caption{Density of states as a function of energy for 3D semiconductor (blue curve), a 10nm quantumwell with infinite barriers (red curve) and a 10nm quantum wire with infinite barriers (green curve).}
+	\label{fig:dimensionalDOS}
+\end{figure}
+
+\subsection{Degeneracy in Quantum Wires}
+Assuming that the ``collapsed'' dimensions $y$ and $z$ have the same length, $L=L_y =L_z$, then the expression for energy is simplified to
+\begin{equation}
+E(n_x, n_y, n_z) = \frac{\hbar^2}{2m}k_x^2 + \frac{\hbar}{2m}\left(\frac{2\pi}{K} \right)^2 (n_y^2 + n_z^2)
+\end{equation}
+which can be simplified further by concatenating the quantum number in $y$- and $z$-directions, such that $n = n_x + n_y$. In this case, the energy will be the same, independently of $n_y$ and $n_z$, assuming that $n^2 = n_y^2 + n_z^2$ holds. The degeneration will be decided by the number of distributions possible for a particular value of $n^2$. For instance $n^2 = 20$ has degeneracy $2$ because the equation $20 = n_x^2 + n_y^2$ has solutions $(n_x, n_y) = (2, 4)$ and $(n_x, n_y) = (4, 2)$.
 
 \end{document}
