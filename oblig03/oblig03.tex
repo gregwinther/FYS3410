@@ -4,6 +4,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{physics}
 \usepackage{graphicx}
+\usepackage{verbatim}
 
 % Letters instead of numbers for subsections
 \renewcommand\thesubsection{\Alph{subsection}}
@@ -131,6 +132,7 @@ L = \frac{\kappa}{T\sigma} = \frac{\pi^2}{3}\frac{k_B^2}{e^2}.
 \end{equation}
 This is somewhat similar to what I obtained in equation \ref{eq:durderesult2}.
 
+\begin{comment}
 \section{Density of States in Free Electron Fermi Gas}
 By introducing Born-Von Karman boundary conditions, one can derive the density of states for a free electron Ferim gas (FEFG) in a three-dimensional sample. Born-von karman means that the wave function is periodic. Here is how such a condition would look like in one dimension:
 \begin{equation}
@@ -171,7 +173,68 @@ T_F = \frac{\hbar^2}{2m_ek_B}\left(\frac{3\pi^2 N}{V} \right)^{\frac{2}{3}}
 
 EXPLAIN THE TREND!
 
-\section{Free Electron Fermi Gas II}
+\end{comment}
+
+\setcounter{section}{2}
+
+\section{Free Electron Fermi Gas}
+\subsection{The Chemical Potential at Absolute Zero}
+In a one-dimensional sample, the number of electrons will be
+\begin{equation}
+N_e = 2\int \frac{d \epsilon}{2\pi\hbar /L}f(\epsilon_k)
+ = \frac{L}{\pi\hbar} \int d\epsilon \frac{1}{e^{(\frac{k^2}{2m} -\mu)/{k_B T}} + 1},
+\end{equation}
+dividing by $L$ on both sides give
+\begin{equation}
+\frac{N_e}{L} = \frac{1}{\pi\hbar} \int d\epsilon \frac{1}{e^{(\frac{k^2}{2m} -\mu)/{k_B T}} + 1}.
+\end{equation}
+If we know the density of electrons $N_e/L$, one can solve this equation to find $\mu$. In general, $\mu$ depends on $T$ and the electron density.
+
+As the temperature approaches zero, the Fermi-Dirac distribution, $f(\epsilon_k)$ turns into a step function. At low $T$, $(\epsilon-\mu)/(k_B T)$ becomes very large. Depending on the sign of $\epsilon - \mu$
+\begin{equation}
+\lim_{T \to 0} \frac{\epsilon - \mu}{k_B T} = 
+\begin{cases}
+	- \infty, \ & \ \epsilon < \mu \\
+	+ \infty, \ & \ \epsilon > \mu
+\end{cases}
+\end{equation}
+Therefore,
+\begin{equation}
+\lim_{T\to 0} f(\epsilon) = \lim_{T\to 0} \frac{1}{e^{(\epsilon -\mu)/(k_B T)} + 1} =
+\begin{cases}
+	1, \ & \ \epsilon < \mu \\
+	0, \ & \ \epsilon > \mu 
+\end{cases}
+\end{equation}
+It is therefore easy to see that the chemical potential $\mu$ plays the role of $\epsilon_F$ here. In other words $\mu = \epsilon_F$ at $T=0$. This result generalises to higher dimensions.
+
+\subsection{FEFG at $T>0K$}
+
+For any $T$ the Fermi-Dirac distribution becomes $\frac{1}{2}$ if $\mu = \epsilon_F$
+\begin{equation}
+f(\mu) = \frac{1}{e^{(\mu-\mu)/(k_B T) + 1}} = \frac{1}{e^0 + 1} = \frac{1}{2},
+\end{equation}
+however, this is only an OK approximation for quite high temperatures. This computation begs the question - at what temperatures is the assumption that $\mu = \epsilon$ reasonable?
+
+Figure \ref{fig:fdd1} illustrates this problem nicely. One can see that the Fermi-Dirac function only is a true step function at very low temperatures, and as the temperature increases, the distribution will be more and more flat, approaching $1/2$.
+
+\begin{figure}
+\centering
+	\includegraphics[width = 0.7\textwidth]{fdd1.png}
+	\caption{The Fermi-Diract Distribution at different temperatures}
+	\label{fig:fdd1}
+\end{figure}
+
+\subsection{Chemical Potential Dependence on Temperature}
+
+The total number of orbitals of energy $\leq \epsilon$  in a Fermi sphere is given by
+\begin{equation}
+N = \frac{V}{3\pi^2}\left(\frac{2m \epsilon}{\hbar^2} \right),
+\end{equation}
+the same quantity is found by way of the following integral
+\begin{equation}
+n = \int_0^{\infty} d\epsilon D(\epsilon) f(\epsilon)
+\end{equation}
 
 \section{Free Electron Fermi Gas in Lower Dimensions}
 
@@ -217,6 +280,7 @@ E(n_x, n_y, n_z) = \frac{\hbar^2}{2m}k_x^2 + \frac{\hbar}{2m}\left(\frac{2\pi}{K
 \end{equation}
 which can be simplified further by concatenating the quantum number in $y$- and $z$-directions, such that $n = n_x + n_y$. In this case, the energy will be the same, independently of $n_y$ and $n_z$, assuming that $n^2 = n_y^2 + n_z^2$ holds. The degeneration will be decided by the number of distributions possible for a particular value of $n^2$. For instance $n^2 = 20$ has degeneracy $2$ because the equation $20 = n_x^2 + n_y^2$ has solutions $(n_x, n_y) = (2, 4)$ and $(n_x, n_y) = (4, 2)$.
 
+\begin{comment}
 \section{The Konig-Penney Model}
 \begin{figure}
 \centering
@@ -260,6 +324,14 @@ The first derivative can now be found by way of integration
 \begin{equation}
 \int_{a-\Delta X}^{a+\Delta x}
 \end{equation}
+
+\end{comment}
+
+\setcounter{section}{5}
+
+\section{Monovalent Atom Crystallisation}
+
+\section{Effective Mass}
 
 
 \end{document}
