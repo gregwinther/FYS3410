@@ -5,6 +5,7 @@
 \usepackage{physics}
 \usepackage{graphicx}
 \usepackage{verbatim}
+\usepackage{listings}
 
 % Letters instead of numbers for subsections
 \renewcommand\thesubsection{\Alph{subsection}}
@@ -330,8 +331,99 @@ The first derivative can now be found by way of integration
 \setcounter{section}{5}
 
 \section{Monovalent Atom Crystallisation}
+Monovalent atoms are assumed to crystallise in a simple cubic (SC) lattice with lattice parameter $\alpha$.
+
+\subsection{Magnitude of the Fermi Vector}
+The Fermi vector is given by 
+\begin{equation}
+k_F = \left(\frac{3\pi^2N}{V} \right)^{\frac{1}{3}},
+\end{equation}
+where the volume is given by the lattice parameter as $V=a^3$. Moreover, the wave vector for the first Brillouin zone is $k_{\text{BZ, 1D}} = \frac{1}{2}k_{\text{max}} = \frac{\pi}{a}$. Then, for a SC lattice in 3D, $k_{\text{BZ}} \approx \frac{\pi}{a}$.
+
+Setting $N=1$ gives
+\begin{equation}
+k_F = \frac{(3\pi^2)^\frac{1}{3}}{a}.
+\end{equation}
+By computation we find that $(3\pi^2)^{1/3} \approx 3.094 < \pi$. We see that the Fermi vector is shorter, but quite close to the Brillouin zone vector.
+
+\subsection{Filling of Empty States}
+If $k_F < k_{\text{BZ}}$ there must be unoccupied states available up to $k=k_\text{BZ}$. How many divalent atoms that must be added in order to fill up these states can be computed numerically. The Python script below contains a function for the Fermi vector which is dependent on the composition of divalent atoms in the crystal. The script runs through the possible magnitudes of the Fermi vector until the it is the same as the Brillouin zone. The result is printed.
+
+\lstinputlisting[language=python, frame=single, showstringspaces=false]{divalent.py}
+
+The script found that when $4.8\%$ of the atoms are divalent, the Fermi vector will reach the edge of the Brillouin zone. The number of unoccupied states will be fewer if this happens, resulting in a decreased electrical conductivity.
+
+\subsection{Sodium}
+Na is one of the best behaving metals. Notably, Na crystallises in a body-centred cubic (BCC) structure with two atoms in each conventional unit cell. A BCC structure can be described as by vectors that give a volume $V=\frac{1}{2}a^3$. Moreover,
+\begin{equation}
+N = V_F \times \text{DOS} = \frac{k_F^3}{3}\frac{V}{\pi^2}.
+\end{equation}
+By a simple algebraic exercise, this is rewritten to
+\begin{equation}
+k_F = \left(\frac{3\pi^2N}{V} \right)^{\frac{1}{3}} = \frac{(\frac{3}{2}\pi^2N)^\frac{1}{3}}{a}.
+\end{equation}
+In a BCC unit cell the longest distance to another atom is $\sqrt{2}a$ which gives
+\begin{equation}
+k_\text{BZ} = \approx \frac{\sqrt{2}\pi}{a}.
+\end{equation}
+A computation gives $(\frac{3}{2}\pi^2)^{1/3} \approx 2.455 < \sqrt{2}\pi \approx 4.443$. Again, the Fermi vector is lower in magnitude than the vector defining the Brillouin zone, as expected. But for Na in a BCC structure it is much shorter compared with a regular SC lattice. This means that there are several more unoccupied states!
+
+\subsection{Mixing the Sodium with Magnesium}
+By modifying the script above I find the mix of Na and Mg to have full states when there is $48\%$ Mg, which is much higher, as expected.
+
+\subsection{Electrical Conductivity as a Function of Composition}
+The electric conductivity will be at a minimum when $k_F = k_\text{BZ}$. Moving away from this point, the electrical conductivity will increase before reaching a maximum asymptotic level. This is illustrated in figure \ref{fig:NaMg}.
+
+\begin{figure}
+\centering
+	\includegraphics[width=0.8\textwidth]{NaMg.png}
+	\caption{Electrical conductivity as a function of crystal composition}
+	\label{fig:NaMg}
+\end{figure}
 
 \section{Effective Mass}
+The general Schrödinger equation is given by
+\begin{equation}
+\label{eq:schrodingerMass}
+\hat{H}\psi = E\psi,
+\end{equation}
+where the Hamiltonian is usually the sum of kinetic and potential energy. However, the potential energy is sometimes unknown or difficult to deal with. The problem is circumvented by including the potential in the mass of the electron, by introducing ``effective mass''.
 
+An arbitrary energy can be Taylor expanded around $k_0=0$
+\begin{equation}
+E(k) \approx E_0 + \frac{\partial E}{\partial k} + \frac{1}{2}\frac{\partial^2}{\partial k^2} k^2 + \dots,
+\end{equation}
+where $E_0=0$ and $\frac{\partial E}{\partial k} = 0$ and the higher order terms are ignored. This leaves us with
+\begin{equation}
+\label{eq:effectiveMassEnergy1}
+E(k) = \frac{1}{2}\frac{\partial^2 E}{\partial k^2}k^2.
+\end{equation}
+What remains from the Hamiltonian in equation \ref{eq:schrodingerMass} is the energy eigenvalue
+\begin{equation}
+\label{eq:energyEigenMass}
+E(k) = \frac{\hbar^2}{2m}k^2.
+\end{equation}
+Equating \ref{eq:effectiveMassEnergy1} and \ref{eq:energyEigenMass} yields
+\begin{equation}
+\frac{\hbar^2}{m^*} = \frac{\partial^2 E}{\partial k^2}
+\to
+m^* = \hbar^2\left(\frac{\partial^2 E}{\partial k^2}\right)^{-1}   
+\end{equation}
+where $m^*$ is the effective mass.
+
+\subsection{}
+The effective mass includes the potential of the electron and is therefore different from the rest mass.
+
+\subsection{}
+States of positive effective mass occur near the bottom of a band because positive effective mass means that the band has an upward curvature. States of negative mass occur near the top of a band. These are valence bands, meaning that the electron is removed from the conduction band, creating a ``hole'', which is an alternate description of a band with one missing electron. This effect is important in semiconductor physics and solid state electronics.
+
+\subsection{}
+The energy of electrons in the vicinity of the conduction band edge is $E(k) = Ak^2$, where $A = 5\times 10^{-37} Jm^2$. The effective mass of these electrons are
+\begin{align*}
+m^* = \hbar^2\left(\frac{\partial^2 E}{\partial k^2}\right)^{-1} = \hbar^2\frac{1}{2A} 
+&= \frac{(1.0545718 \times 10^{-34}Js)^2}{10\times 10^{-37}Jm^2 } \\
+&= 1.112\times 10^{-32} Js^2m^{-2} \\
+&= 1.112\times 10^{-32} kg \approx 0.01m_e
+\end{align*}
 
 \end{document}
