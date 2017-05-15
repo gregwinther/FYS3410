@@ -24,8 +24,17 @@ Gallium arsenide (GaAs) is a semiconductor with a direct band gap of $~1.42eV$ a
 
 The band structure of some semiconductors, including GaAs, around the point $\Gamma$ can be approximated by
 \begin{equation}
-E(\vb{k}) = E_0 + \frac{\hbar^2}{2m*}(\vb{k}^2 - \Gamma) = C + Ak^2,
+E(\vb{k}) = E_0 + \frac{\hbar^2}{2m^*}(\vb{k}^2 - \Gamma) = C + Ak^2,
 \end{equation}
-where $m^*$ is the effective mass. 
+where $m^*$ is the effective mass, and the factor $A$ is the curvature of the band. Setting $C=E_0=0$ one gets
+\begin{equation}
+A = \frac{\hbar^2}{2m^*}.
+\end{equation}
+Inserting for the different effective masser of the electrons and holes yields
+\begin{align*}
+A_1(m^* = \ \  0.067m_0) &= \ \ 0.569eVnm^2 \\ 
+A_2(m^* = -0.082m_0) &= -0.465eVnm^2 \\
+A_1(m^* = -0.450m_0) &= -0.085eVnm^2.
+\end{align*}
 
 \end{document}
