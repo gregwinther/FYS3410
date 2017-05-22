@@ -35,4 +35,4 @@ plt.plot((-1.1, 1.1), (0, 0), 'k--')
 plt.plot((-1.1, 1.1), (E_g, E_g), 'k--')
 plt.legend()
 
-plt.show()
+plt.plot()
